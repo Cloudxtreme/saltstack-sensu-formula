@@ -1,0 +1,7 @@
+{% set sensu = salt['pillar.get']('sensu', {}) -%}
+{
+  "redis": {
+    "host": "{{ sensu.redis.get('host') }}",
+    "port": {{ sensu.redis.get('port') }}
+  }
+}

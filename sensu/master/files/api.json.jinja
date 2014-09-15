@@ -1,0 +1,9 @@
+{% set sensu = salt['pillar.get']('sensu', {}) -%}
+{
+  "api": {
+    "host": "{{ sensu.api.get('host') }}",
+    "port": {{ sensu.api.get('port') }},
+    "user": "{{ sensu.api.get('user') }}",
+    "password": "{{ sensu.api.get('pass') }}"
+  }
+}

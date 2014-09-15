@@ -1,0 +1,23 @@
+{% set sensu = salt['pillar.get']('sensu', {}) -%}
+{% from "sensu/map.jinja" import sensu_uchiwa with context %}
+{
+  "sensu": [
+    {
+      "name": "Sensu",
+      "host": "{{ sensu.api.get('host') }}",
+      "ssl": {{ sensu.api.get('ssl') }},
+      "port": {{ sensu.api.get('port') }},
+      "user": "{{ sensu.api.get('user') }}",
+      "pass": "{{ sensu.api.get('user') }}",
+      "path": "",
+      "timeout": 5000
+    }
+  ],
+  "uchiwa": {
+    "user": "{{ sensu.uchiwa.get('user') }}",
+    "pass": "{{ sensu.uchiwa.get('pass') }}",
+    "port": {{ sensu.uchiwa.get('port') }},
+    "stats": {{ sensu.uchiwa.get('stats') }},
+    "refresh": {{ sensu.uchiwa.get('refresh') }}
+  }
+}

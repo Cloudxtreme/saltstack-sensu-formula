@@ -6,8 +6,19 @@
         'sslpath': '/etc/sensu/ssl/',
     },
 }, merge=salt['pillar.get']('sensu:client')) %}
-
-
+{% set sensu_server = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'sensu',
+        'service': 'sensu-server',
+    },
+}, merge=salt['pillar.get']('sensu:uchiwa')) %}
+{% set sensu_api = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'sensu',
+        'service': 'sensu-api',
+        'conf': '/etc/sensu/api.json',
+    },
+}, merge=salt['pillar.get']('sensu:uchiwa')) %}
 {% set sensu_uchiwa = salt['grains.filter_by']({
     'default': {
         'pkg': 'uchiwa',

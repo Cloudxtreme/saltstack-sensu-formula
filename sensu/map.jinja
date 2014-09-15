@@ -1,0 +1,17 @@
+{% set sensu_client = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'sensu',
+        'service': 'sensu-client',
+        'conf': '/etc/sensu/conf.d/client.json',
+        'sslpath': '/etc/sensu/ssl/',
+    },
+}, merge=salt['pillar.get']('sensu:client')) %}
+
+
+{% set sensu_uchiwa = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'uchiwa',
+        'service': 'uchiwa',
+        'conf': '/etc/sensu/uchiwa.json',
+    },
+}, merge=salt['pillar.get']('sensu:uchiwa')) %}

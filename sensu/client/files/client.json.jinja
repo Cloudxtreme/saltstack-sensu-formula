@@ -1,0 +1,20 @@
+{% set sensu = salt['pillar.get']('sensu', {}) -%}
+{% from "sensu/map.jinja" import sensu_client with context %}
+{
+  "client": {
+    "name": "{{ grains.fqdn }}",
+    "address": "{{ grains.ip_interfaces.eth0 }}",
+    "subscriptions": [ "all" ]
+  },
+  "rabbitmq": {
+    "ssl": {
+      "cert_chain_file": "{{ sensu_client.sslpath }}cert.pem",
+      "private_key_file": "{{ sensu_client.sslpath }}key.pem"
+    },
+    "host": "{{ sensu.rabbitmq.get('host') }}",
+    "port": {{ sensu.rabbitmq.get('port') }},
+    "vhost": "{{ sensu.rabbitmq.get('vhost') }}",
+    "user": "{{ sensu.rabbitmq.get('user') }}",
+    "password": "{{ sensu.rabbitmq.get('pass') }}"
+  }
+}

@@ -1,6 +1,7 @@
+{% set sensu = salt['pillar.get']('sensu', {}) -%}
 [
     {rabbit, [
-    {ssl_listeners, [5671]},
+    {ssl_listeners, [{{ sensu.rabbitmq.get('port', 5671) }}]},
     {ssl_options, [{cacertfile,"/etc/rabbitmq/ssl/cacert.pem"},
                    {certfile,"/etc/rabbitmq/ssl/cert.pem"},
                    {keyfile,"/etc/rabbitmq/ssl/key.pem"},

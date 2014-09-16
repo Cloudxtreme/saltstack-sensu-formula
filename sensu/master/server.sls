@@ -11,3 +11,8 @@ sensu_server:
     - running
     - name: {{ sensu_server.service }}
     - enable: True
+    - require:
+      - pkg: {{ sensu_server.pkg }}
+  grains.present:
+    - name: sensu-server
+    - value: true

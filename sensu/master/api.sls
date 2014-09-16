@@ -11,6 +11,11 @@ sensu_api:
     - running
     - name: {{ sensu_api.service }}
     - enable: True
+    - require:
+      - pkg: {{ sensu_api.pkg }}
+  grains.present:
+    - name: sensu-api
+    - value: true
   file.managed:
     - name: {{ sensu_api.conf }}
     - source: salt://sensu/master/files/api.json.jinja

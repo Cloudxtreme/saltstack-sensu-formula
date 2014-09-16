@@ -11,6 +11,8 @@ sensu_client:
     - running
     - name: {{ sensu_client.service }}
     - enable: True
+    - require:
+      - pkg: {{ sensu_client.pkg }}
   file.managed:
     - name: {{ sensu_client.conf }}
     - source: salt://sensu/client/files/client.json.jinja
@@ -18,6 +20,8 @@ sensu_client:
     - user: root
     - group: root
     - mode: 644
+    - require:
+      - pkg: {{ sensu_client.pkg }}
     - watch_in:
       - service: {{ sensu_client.service }}
 
@@ -28,6 +32,8 @@ sensu_client_ssldir:
     - group: sensu
     - mode: 777
     - makedirs: True
+    - require:
+      - pkg: {{ sensu_client.pkg }}
     - watch_in:
       - service: {{ sensu_client.service }}
 
@@ -39,6 +45,9 @@ sensu_client_sslcert:
     - user: sensu
     - group: sensu
     - mode: 644
+    - require:
+      - pkg: {{ sensu_client.pkg }}
+      - file: {{ sensu_client.sslpath }}
     - watch_in:
       - service: {{ sensu_client.service }}
 
@@ -50,5 +59,8 @@ sensu_client_sslkey:
     - user: sensu
     - group: sensu
     - mode: 644
+    - require:
+      - pkg: {{ sensu_client.pkg }}
+      - file: {{ sensu_client.sslpath }}
     - watch_in:
       - service: {{ sensu_client.service }}

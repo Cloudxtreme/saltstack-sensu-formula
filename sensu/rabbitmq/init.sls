@@ -1,3 +1,4 @@
+{% set sensu = salt['pillar.get']('sensu', {}) %}
 {% from "sensu/rabbitmq/map.jinja" import rabbitmq with context %}
 
 rabbitmq:
@@ -23,8 +24,6 @@ rabbitmq:
     - name: {{ rabbitmq.conf }}
     - source: salt://sensu/rabbitmq/files/rabbitmq.config.jinja
     - template: jinja
-    - user: sensu
-    - group: sensu
     - mode: 644
     - watch_in:
       - service: {{ rabbitmq.service }}
@@ -32,8 +31,6 @@ rabbitmq:
 rabbitmq_ssldir:
   file.directory:
     - name: {{ rabbitmq.sslpath }}
-    - user: sensu
-    - group: sensu
     - mode: 777
     - makedirs: True
     - watch_in:
@@ -44,8 +41,6 @@ rabbitmq_sslcacert:
     - name: {{ rabbitmq.sslpath }}cacert.pem
     - source: salt://sensu/rabbitmq/files/cacert.pem.jinja
     - template: jinja
-    - user: sensu
-    - group: sensu
     - mode: 644
     - watch_in:
       - service: {{ rabbitmq.service }}
@@ -55,8 +50,6 @@ rabbitmq_sslcert:
     - name: {{ rabbitmq.sslpath }}cert.pem
     - source: salt://sensu/rabbitmq/files/cert.pem.jinja
     - template: jinja
-    - user: sensu
-    - group: sensu
     - mode: 644
     - watch_in:
       - service: {{ rabbitmq.service }}
@@ -66,8 +59,17 @@ rabbitmq_sslkey:
     - name: {{ rabbitmq.sslpath }}key.pem
     - source: salt://sensu/rabbitmq/files/key.pem.jinja
     - template: jinja
-    - user: sensu
-    - group: sensu
     - mode: 644
     - watch_in:
       - service: {{ rabbitmq.service }}
+
+{% if salt['grains.get']('rabbitmq-server') != 'true' %}
+rabbitmq_init:
+  cmd.wait:
+    - name: rabbitmqctl add_vhost {{ sensu.rabbitmq.get('vhost', '/sensu') }}; rabbitmqctl add_user {{ sensu.rabbitmq.get('user', 'sensu') }} {{ sensu.rabbitmq.get('pass', 'mypass') }}; rabbitmqctl set_permissions -p {{ sensu.rabbitmq.get('vhost', '/sensu') }} {{ sensu.rabbitmq.get('user', 'sensu') }} '.*' '.*' '.*'
+    - watch:
+      - service: {{ rabbitmq.service }}
+  grains.present:
+    - name: rabbitmq-vhost
+    - value: 'true'
+{% endif %}

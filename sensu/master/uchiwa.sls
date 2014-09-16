@@ -11,6 +11,11 @@ sensu_uchiwa:
     - running
     - name: {{ sensu_uchiwa.service }}
     - enable: True
+    - require:
+      - pkg: {{ sensu_uchiwa.pkg }}
+  grains.present:
+    - name: sensu-uchiwa
+    - value: true
   file.managed:
     - name: {{ sensu_uchiwa.conf }}
     - source: salt://sensu/master/files/uchiwa.json.jinja

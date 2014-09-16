@@ -2,7 +2,7 @@
 {% from "sensu/map.jinja" import sensu_client with context %}
 {
   "client": {
-    "name": "{{ grains.fqdn }}",
+    "name": "{{ grains.localhost }}",
     "address": "{{ grains.ip_interfaces.eth0 }}",
     "subscriptions": [ "all" ]
   },

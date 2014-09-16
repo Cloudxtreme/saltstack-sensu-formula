@@ -12,6 +12,13 @@ Requires a redis server - [Redis Formula](https://github.com/saltstack-formulas/
     See the full `Salt Formulas installation and usage instructions
     <http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
 
+Generating Certificates
+=====================
+
+You will need to generate a few certificates and place the details into the
+sensu pillar state in order to use this formula. To generate certificates, see
+[Sensu Certificate Documentation](http://sensuapp.org/docs/latest/certificates).
+
 Available states
 ================
 

@@ -9,5 +9,3 @@ sensu_plugins:
     - source: salt://sensu/master/files/plugins/
     - include_empty: True
     - makedirs: True
-    - require:
-      - pkg: sensu-client

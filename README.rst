@@ -1,8 +1,9 @@
-=====
-Sensu
-=====
+=============
+Sensu-Formula
+=============
 
 Formulas to set up and configure sensu and sensu clients. Tested on CentOS 6.5.
+This should work on other releases as well (Ubuntu / Debian) with some tweaking.
 
 .. note::
 

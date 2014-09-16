@@ -16,7 +16,7 @@
     'default': {
         'pkg': 'sensu',
         'service': 'sensu-api',
-        'conf': '/etc/sensu/api.json',
+        'conf': '/etc/sensu/conf.d/api.json',
     },
 }, merge=salt['pillar.get']('sensu:api')) %}
 {% set sensu_uchiwa = salt['grains.filter_by']({

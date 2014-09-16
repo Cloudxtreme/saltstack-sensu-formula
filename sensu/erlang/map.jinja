@@ -1,0 +1,14 @@
+{% set erlang = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'erlang',
+    },
+    'CentOs': {
+        'pkg': 'erlang',
+    },
+    'Debian': {
+        'pkg': 'erlang-nox',
+    },
+    'Ubuntu': {
+        'pkg': 'erlang-nox',
+    },
+}, merge=salt['pillar.get']('erlang')) %}

@@ -1,0 +1,8 @@
+{% set rabbitmq = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'rabbitmq-server',
+        'service': 'rabbitmq-server',
+        'conf': '/etc/rabbitmq/rabbitmq.config',
+        'sslpath': '/etc/rabbitmq/ssl/',
+    },
+}, merge=salt['pillar.get']('rabbitmq:lookup')) %}

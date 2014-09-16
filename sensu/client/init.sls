@@ -21,13 +21,6 @@ sensu_client:
     - watch_in:
       - service: {{ sensu_client.service }}
 
-sensu_plugins:
-  file.recurse:
-    - name: /etc/sensu/plugins/
-    - source: salt://sensu/server/files/plugins
-    - include_empty: True
-    - makedirs: True
-
 sensu_client_ssldir:
   file.directory:
     - name: {{ sensu_client.sslpath }}

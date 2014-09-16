@@ -4,7 +4,7 @@
   "client": {
     "name": "{{ grains.id }}",
     "address": "{{ grains.ip_interfaces.eth0 }}",
-    "subscriptions": [{% if 'roles' in grains -%}{% for role in grains['roles'] -%}"{{ role }}"{% endfor -%}{% endif -%}]
+    "subscriptions": [{% if 'osfinger' in grains -%}"{{ grains['osfinger'] }}",{% endif -%}{% if 'roles' in grains -%}{% for role in grains['roles'] -%}"role-{{ role }}",{% endfor -%}{% endif -%}{% for i in pillar -%}"pillar-{{ i }}",{% endfor -%}"all"]
   },
   "rabbitmq": {
     "ssl": {

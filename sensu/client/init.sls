@@ -1,16 +1,12 @@
 include:
   - sensu
-  - sensu.plugins
-
+  - sensu.master.plugins
 {% from "sensu/map.jinja" import sensu_client with context %}
 
 sensu_client:
   pkg:
     - installed
     - name: {{ sensu_client.pkg }}
-  grains.list_present:
-    - name: roles
-    - value: "all"
   service:
     - running
     - name: {{ sensu_client.service }}

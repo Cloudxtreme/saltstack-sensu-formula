@@ -15,7 +15,7 @@ Generating Certificates
 
 You will need to generate a few certificates and place the details into the
 sensu pillar state in order to use this formula. To generate certificates, see
-<http://sensuapp.org/docs/latest/certificates>.
+http://sensuapp.org/docs/latest/certificates.
 
 Available states
 ================

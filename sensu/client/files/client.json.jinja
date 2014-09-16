@@ -2,9 +2,9 @@
 {% from "sensu/map.jinja" import sensu_client with context %}
 {
   "client": {
-    "name": "{{ grains.localhost }}",
+    "name": "{{ grains.id }}",
     "address": "{{ grains.ip_interfaces.eth0 }}",
-    "subscriptions": [ "all" ]
+    "subscriptions": [{% if 'roles' in grains -%}{% for role in grains['roles'] -%}"{{ role }}"{% endfor -%}{% endif -%}]
   },
   "rabbitmq": {
     "ssl": {

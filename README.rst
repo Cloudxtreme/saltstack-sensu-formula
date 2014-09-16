@@ -8,7 +8,7 @@ Formulas to set up and configure sensu and sensu clients. Tested on CentOS 6.5.
 
 - Requires the epel repository. - https://github.com/saltstack-formulas/epel-formula
 - Requires a redis server - https://github.com/saltstack-formulas/redis-formula
-- See the full `Salt Formulas installation and usage instructions http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html`_.
+- See the full Salt Formulas installation and usage instructions at http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html.
 
 Generating Certificates
 =====================

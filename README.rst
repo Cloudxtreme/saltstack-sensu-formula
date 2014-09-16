@@ -4,8 +4,8 @@ Sensu
 
 Formulas to set up and configure sensu and sensu clients. Tested on CentOS 6.5.
 
-Requires the epel repository. - [EPEL Formula](https://github.com/saltstack-formulas/epel-formula).
-Requires a redis server - [Redis Formula](https://github.com/saltstack-formulas/redis-formula).
+Requires the epel repository. - <https://github.com/saltstack-formulas/epel-formula>.
+Requires a redis server - <https://github.com/saltstack-formulas/redis-formula>.
 
 .. note::
 
@@ -17,7 +17,7 @@ Generating Certificates
 
 You will need to generate a few certificates and place the details into the
 sensu pillar state in order to use this formula. To generate certificates, see
-[Sensu Certificate Documentation](http://sensuapp.org/docs/latest/certificates).
+<http://sensuapp.org/docs/latest/certificates>.
 
 Available states
 ================

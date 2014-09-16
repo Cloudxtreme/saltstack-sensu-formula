@@ -1,0 +1,35 @@
+sensu:
+  client:
+  api:
+    host: "[IP]"
+    port: 4567
+    user: "admin"
+    pass: "mypass"
+    ssl: "false"
+  uchiwa:
+    port: 3000
+    user: "sensu"
+    pass: "sensu"
+    stats: 10
+    refresh: 10000
+  redis:
+    host: "[IP]"
+    port: 6379
+  rabbitmq:
+    host: "[IP]"
+    port: 5671
+    vhost: "/sensu"
+    user: "sensu"
+    pass: "mypass"
+    sslca: |
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+    sslcert: |
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+    sslkey: |
+      -----BEGIN RSA PRIVATE KEY-----
+      [...]
+      -----END RSA PRIVATE KEY-----
